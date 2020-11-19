@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_moduleexcise/Exercise.dart';
 import 'MaterialAndScoffold.dart';
+import 'OneView.dart';
 void main() {
   runApp(MyApp());
 }
@@ -71,7 +72,7 @@ class _indexSelectState extends State<indexSelect>  with TickerProviderStateMixi
       view.controller.addListener(_rebuild);
     }
     _pageList = <StatefulWidget>[
-      new DemonFul("1"),
+      new oneViewShow(),
       new DemonFul("2"),
       new DemonFul("3"),
       new DemonFul("4"),
