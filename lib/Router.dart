@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
           primarySwatch: Colors.black
       ),
-      home: MyHomePage(),
+      home: null,
       routes: {"weater":(context){return newMyHomePage();},"page2":(context){return newMyHomePage();}},
     );
   }
