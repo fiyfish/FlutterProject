@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_moduleexcise/Exercise.dart';
 import 'MaterialAndScoffold.dart';
 import 'OneView.dart';
+import 'TwoView.dart';
 void main() {
   runApp(MyApp());
 }
@@ -73,7 +74,7 @@ class _indexSelectState extends State<indexSelect>  with TickerProviderStateMixi
     }
     _pageList = <StatefulWidget>[
       new oneViewShow(),
-      new DemonFul("2"),
+      new twoStack(),
       new DemonFul("3"),
       new DemonFul("4"),
       new DemonFul("5")

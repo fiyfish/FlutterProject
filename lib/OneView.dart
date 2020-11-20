@@ -14,7 +14,6 @@ class _oneViewShowState extends State<oneViewShow> {
     );
   }
 }
-
 class showRowView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,6 @@ class showRowView extends StatelessWidget {
             flex: 2,
           ),
           Expanded(child: Container(
-
             color: Colors.yellow,
             padding: EdgeInsets.all(5.0),
           ),
@@ -42,8 +40,6 @@ class showRowView extends StatelessWidget {
           ),
         ],
       ),
-
-
     );
 
   }
