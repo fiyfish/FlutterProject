@@ -4,9 +4,29 @@ import 'package:flutter_moduleexcise/Exercise.dart';
 import 'MaterialAndScoffold.dart';
 import 'OneView.dart';
 import 'TwoView.dart';
+import 'ThreeView.dart';
+import 'package:flutter_moduleexcise/ThreeWidget.dart';
 void main() {
   runApp(MyApp());
 }
+abstract class Animal{
+
+  speak();//抽象类不可以去生成实例对象可以被继承
+  printInfo(){print("我不是虾米");}
+}
+class Dog extends Animal{
+
+  @override
+  speak() {
+    // TODO: implement speak
+    print("不想当🦈的鱼不是好鱼");
+  }
+
+}
+
+
+
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -75,8 +95,8 @@ class _indexSelectState extends State<indexSelect>  with TickerProviderStateMixi
     _pageList = <StatefulWidget>[
       new oneViewShow(),
       new twoStack(),
-      new DemonFul("3"),
-      new DemonFul("4"),
+      new ThreeView(),
+      new threeView(),
       new DemonFul("5")
     ];
     _currentPage = _pageList[_currentIndex];
