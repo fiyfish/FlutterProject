@@ -95,17 +95,15 @@ class _indexSelectState extends State<indexSelect>  with TickerProviderStateMixi
     _pageList = <StatefulWidget>[
       new oneViewShow(),
       new twoStack(),
-      new ThreeView(),
+      new twoView(),
       new threeView(),
       new DemonFul("5")
     ];
     _currentPage = _pageList[_currentIndex];
   }
-
   void _rebuild() {
     setState(() {});
   }
-
   @override
   void dispose() {
     super.dispose();
