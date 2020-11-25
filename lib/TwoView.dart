@@ -48,7 +48,6 @@ class switchclik extends StatefulWidget {
   @override
   _switchclikState createState() => _switchclikState();
 }
-
 class _switchclikState extends State<switchclik> {
   @override
   bool _value = true;

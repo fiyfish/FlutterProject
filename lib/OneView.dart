@@ -12,11 +12,13 @@ class _oneViewShowState extends State<oneViewShow> {
       title: "wrap流式布局的使用",
       theme: ThemeData(),
       home:SingleChildScrollView(child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           wrapDemon(),
           Padding(padding:EdgeInsets.only(top:5)),
           Uibutton(),
+          Padding(padding:EdgeInsets.only(top:5)),
+         classDemon(),
          Padding(padding:EdgeInsets.only(top:15),child:  Text("flutter",style: TextStyle(color: Colors.blue,fontSize: 20,shadows: [Shadow(color: Colors.black12,offset: Offset(3,3),blurRadius: 3)]),),),
         ],
       ),
@@ -24,6 +26,22 @@ class _oneViewShowState extends State<oneViewShow> {
     );
   }
 }
+class classDemon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+    child: Stack(
+    alignment: Alignment.center,
+    children: [
+      CircleAvatar(child: Icon(Icons.sanitizer),radius:100,),
+      Text('fluttet入门视频',style: TextStyle(color: Colors.red),),
+    ],
+    ),
+
+    );
+  }
+}
+
 class Uibutton extends StatefulWidget {
   @override
   _UibuttonState createState() => _UibuttonState();
@@ -34,8 +52,7 @@ class _UibuttonState extends State<Uibutton> {
    String textName = "";
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.fromLTRB(10,10,10,500),
+      padding: EdgeInsets.only(top:10),
       decoration: BoxDecoration(color:Colors.blue,borderRadius: BorderRadius.all(Radius.circular(8.0))),
       child:Positioned(left: 0,top: 0,width:50,height:50,
         child:FlatButton(
