@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_moduleexcise/Container.dart';
+import 'package:flutter/cupertino.dart';
 
 class twoStack extends StatefulWidget {
   @override
@@ -16,124 +18,79 @@ class _twoStackState extends State<twoStack> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Stack(
+      child: Scaffold(
+        appBar: AppBar(title: Text("demon"),),
+        drawer: Drawer(
+        child: ListView(
         children: <Widget>[
-          Positioned(child: ListView(
-            //padding: EdgeInsets.all(10),//内边距和
-          scrollDirection: Axis.vertical,
-            itemExtent: 60,
-            children: List.generate(50, (index){
-             return Container(
-               alignment: Alignment.center,
-               decoration: BoxDecoration(border: Border.all(color: Colors.red)),
-               child: Text("item${index}"),
-             );
-            }),
-          ),
-            bottom: 0,
-            left: 0,
-            right: 0,
-            top: 280,),
-          Positioned(
-          left: 0,
-          right: 0,
-          top: 280,
-          height: 50,
-           child: Container(
-             color: Colors.red,
-           ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 330,
-            height: 50,
-            child: Container(
-              width: 220,
-              child: Text("eqeqeqewqeqeqew"),
-              color: Colors.yellow,),
-          ),
-          Positioned(
-            left: 0,
-            width: 200,
-            top: 0,
-            height: 200,
-            child:Container(child: Image.network(
-                "http://mvimg2.meitudata.com/55fe3d94efbc12843.jpg",fit: BoxFit.fitHeight,),
-          ),),
-          Positioned(
-              left: 0,
-              right: 0,
-              top: 200,
-              height: 25,
-              child:Container(
-                  color: Colors.yellow,
-                  child:Text(
-                "flutter代码学习",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.red,
-                    fontWeight: FontWeight.w100),
-              ))),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 225,
-            height: 50,
-            child: Row(
-              children: <Widget>[//stack+position去实现绝对定位stack---Positioned去实现绝对定位效果
-                Expanded(
-                  child: Container(
-                    color: Colors.lightGreen,
-                    height: 50,
-                    child: Text(
-                      "123",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
-                          backgroundColor: Colors.blue),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  flex: 1,
-                ),
-                Expanded(
-                    child: Container(
-                      height:50,
-                      decoration: BoxDecoration(color: Colors.black),
-                      child: Text(
-                        "123",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            backgroundColor: Colors.orange),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                      ),
-                    ),
-                    flex: 1),
-                Expanded(
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(color: Colors.cyanAccent),
-                      child: Text(
-                        "123",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            backgroundColor: Colors.red),
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                      ),
-                    ),
-                    flex: 1),
-              ],
-            ),
-          )
+          DrawerHeader(child:Icon(Icons.print)),
+          ListTile(title: Text('你的'),),
+          ListTile(title: Text('我的'),),
+          ListTile(title: Text('大家的'),),
         ],
-      ),
+        ),
+        ),
+        body:Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CupertinoActivityIndicator(radius:15,),
+            cupertionAlertDialogDemon(),
+            Padding(padding: EdgeInsets.only(top:5),),
+            iosButton(),
+            slider()
+          ],
+        ))
     );
+  }
+}
+class slider extends StatefulWidget {
+  @override
+  _sliderState createState() => _sliderState();
+}
+class _sliderState extends State<slider> {
+  @override
+  double _value = 1.0;
+  Widget build(BuildContext context) {
+    return Container(
+    child: CupertinoSlider(value: _value,onChanged:(double v){
+    setState(() {
+      print("$v");
+      _value = v;
+    });
+    },
+    onChangeEnd:(double page){print("已经结束了");},
+    onChangeStart:(double page){print("刚刚开始了");},  
+    min: 1.0,
+    max: 10.0,
+    divisions: 5,
+    activeColor: Colors.red,
+    ),
+    );
+  }
+}
+class iosButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: CupertinoButton(child: Text("name"),),
+      color: Colors.blue,
+    );
+  }
+}
+
+class cupertionAlertDialogDemon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+          title: Text("删除提示"),
+          content: Text('确定要删除吗?' ),
+          actions: [
+           FlatButton(onPressed:(){}, child:Text("确定"),),
+           FlatButton(onPressed:(){}, child: Text("取消")),
+            FlatButton(onPressed:(){}, child: Text("在考虑一下")),
+            FlatButton(onPressed:(){}, child: Text("我考虑好了")),
+          ],
+        );
   }
 }
 /*
