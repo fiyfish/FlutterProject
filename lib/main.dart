@@ -6,6 +6,7 @@ import 'OneView.dart';
 import 'TwoView.dart';
 import 'ThreeView.dart';
 import 'package:flutter_moduleexcise/ThreeWidget.dart';
+import 'fiveData.dart';
 void main() {
   runApp(MyApp());
 }
@@ -98,7 +99,7 @@ class _indexSelectState extends State<indexSelect>  with TickerProviderStateMixi
       new twoStack(),
       new twoView(),
       new threeView(),
-      new DemonFul("5")
+      new fiveData(),
     ];
     _currentPage = _pageList[_currentIndex];
   }

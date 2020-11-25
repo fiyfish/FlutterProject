@@ -12,11 +12,12 @@ class _oneViewShowState extends State<oneViewShow> {
       title: "wrap流式布局的使用",
       theme: ThemeData(),
       home:SingleChildScrollView(child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           wrapDemon(),
           Padding(padding:EdgeInsets.only(top:5)),
           Uibutton(),
-          Padding(padding: EdgeInsets.only(top:5)),
+         Padding(padding:EdgeInsets.only(top:15),child:  Text("flutter",style: TextStyle(color: Colors.blue,fontSize: 20,shadows: [Shadow(color: Colors.black12,offset: Offset(3,3),blurRadius: 3)]),),),
         ],
       ),
       )
