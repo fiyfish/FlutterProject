@@ -20,12 +20,37 @@ class _oneViewShowState extends State<oneViewShow> {
           Padding(padding:EdgeInsets.only(top:5)),
          classDemon(),
          Padding(padding:EdgeInsets.only(top:15),child:  Text("flutter",style: TextStyle(color: Colors.blue,fontSize: 20,shadows: [Shadow(color: Colors.black12,offset: Offset(3,3),blurRadius: 3)]),),),
+          Padding(padding: EdgeInsets.only(top:15)),
+          WrapVertaical(),
         ],
       ),
       )
     );
   }
 }
+class WrapVertaical extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Wrap(
+        direction:Axis.horizontal,
+        spacing: 5,
+        alignment: WrapAlignment.start,
+        runSpacing:5,
+        textDirection:TextDirection.ltr,
+        verticalDirection:VerticalDirection.down,
+        children:<Widget>[
+          RaisedButton(onPressed:(){},child:Text('flutter1'),),
+          RaisedButton(onPressed:(){},child:Text('flutter2'),),
+          RaisedButton(onPressed:(){},child:Text('flutter3'),),
+          RaisedButton(onPressed:(){},child:Text('flutter4'),),
+          RaisedButton(onPressed:(){},child:Text('flutter5'),),
+        ],
+      ),
+    );
+  }
+}
+
 class classDemon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
