@@ -37,12 +37,39 @@ class _twoStackState extends State<twoStack> {
             cupertionAlertDialogDemon(),
             Padding(padding: EdgeInsets.only(top:5),),
             iosButton(),
-            slider()
+            slider(),
+            switchclik()
           ],
         ))
     );
   }
 }
+class switchclik extends StatefulWidget {
+  @override
+  _switchclikState createState() => _switchclikState();
+}
+
+class _switchclikState extends State<switchclik> {
+  @override
+  bool _value = true;
+  Widget build(BuildContext context) {
+    return Container(
+      child:CupertinoSwitch(
+    value: _value,
+    onChanged:(bool v) {
+      setState(() {
+      _value = v;
+      });
+    },
+     activeColor:Colors.red,
+      ) ,
+    );
+  }
+}
+
+
+
+
 class slider extends StatefulWidget {
   @override
   _sliderState createState() => _sliderState();
@@ -59,7 +86,7 @@ class _sliderState extends State<slider> {
     });
     },
     onChangeEnd:(double page){print("已经结束了");},
-    onChangeStart:(double page){print("刚刚开始了");},  
+    onChangeStart:(double page){print("刚刚开始了");},
     min: 1.0,
     max: 10.0,
     divisions: 5,
