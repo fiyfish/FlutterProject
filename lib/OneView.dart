@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_moduleexcise/TwoView.dart';
@@ -29,6 +31,8 @@ class _oneViewShowState extends State<oneViewShow> {
           gestureClick(),
           Padding(padding: EdgeInsets.only(top:10)),
           GestureRecognizeDemon(),
+          Padding(padding: EdgeInsets.only(top:10)),
+          PresentPage(),
         ],
       ),
       )
@@ -260,6 +264,68 @@ class showRowView extends StatelessWidget {
       ),
     );
 
+  }
+}
+
+class PresentPage extends StatefulWidget {
+  PresentPage({Key key,}) : super(key: key);
+  @override
+  PresentPageState createState() => PresentPageState();
+}
+
+class PresentPageState extends State<PresentPage> {
+
+  static const platform = const MethodChannel('samples.flutter.io/battery');
+
+
+  String _batteryLevel = 'Unknown battery level.';
+
+  String data = "";
+
+  void dismiss() {
+    // 直接调用原生方法
+    var mapData = {"1":"2"};
+    var list = ["one","two","three"];
+    platform.invokeListMethod("present",list);//传递参数从flutter到ios
+  }
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+    Future<Void>_getNumber()async{
+
+      String data;
+
+      final String dataShow = await platform.invokeMethod("");
+
+      data = dataShow;
+    }
+
+    setState(() {
+      _batteryLevel = batteryLevel;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            RaisedButton(
+              child: Text('Get Battery Level'),
+              onPressed: _getBatteryLevel,
+            ),
+            Text(_batteryLevel),
+            RaisedButton(onPressed:(){dismiss();},child:Text("clickMe",style:TextStyle(color: Colors.red),),),
+          ],
+        ),
+      ),
+    );
   }
 }
 /*
