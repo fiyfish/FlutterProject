@@ -1,0 +1,8 @@
+with混用 可以继承多个类 可以调用多个类的方法和属性
+try----on-------
+try----catch------
+try on 捕获指定异常无法处理
+try catch 捕获特定异常
+网络请求框架 dio
+异步处理async+await
+建立类中的方法去获取到最后的值然后写入到需要写入的地方covert数据谢谢json转strng。。。ewe

@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_moduleexcise/TwoView.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
 class oneViewShow extends StatefulWidget {
   @override
   _oneViewShowState createState() => _oneViewShowState();
@@ -22,12 +25,95 @@ class _oneViewShowState extends State<oneViewShow> {
          Padding(padding:EdgeInsets.only(top:15),child:  Text("flutter",style: TextStyle(color: Colors.blue,fontSize: 20,shadows: [Shadow(color: Colors.black12,offset: Offset(3,3),blurRadius: 3)]),),),
           Padding(padding: EdgeInsets.only(top:15)),
           WrapVertaical(),
+          Padding(padding: EdgeInsets.only(top:10)),
+          gestureClick(),
+          Padding(padding: EdgeInsets.only(top:10)),
+          GestureRecognizeDemon(),
         ],
       ),
       )
     );
   }
 }
+class GestureRecognizeDemon extends StatefulWidget {
+  @override
+  _GestureRecognizeDemonState createState() => _GestureRecognizeDemonState();
+}
+
+class _GestureRecognizeDemonState extends State<GestureRecognizeDemon> {
+  var _tapGestureRecognize = TapGestureRecognizer();
+  var _textColor = Colors.black;
+  @override
+  void initState(){super.initState();
+  _tapGestureRecognize.onTapDown = (v){setState(() {
+    _textColor = Colors.red;
+  });};
+  _tapGestureRecognize.onTapUp = (v){
+    setState(() {
+      _textColor = Colors.black;
+    });
+  };
+  }
+  Widget build(BuildContext context) {
+    return Container(
+      width:200,
+      height:200,
+      child: Text.rich(
+      TextSpan(children: [
+      TextSpan(
+        text:'点中变色',
+        style:TextStyle(color: _textColor),
+        recognizer:_tapGestureRecognize,
+      ),
+      ]),
+      ),
+    );
+  }
+  //销毁创建的tapRecognise对象
+ @override
+  void dispose(){
+    super.dispose();
+    _tapGestureRecognize.dispose();
+ }
+
+}
+class gestureClick extends StatefulWidget {
+  @override
+  _gestureClickState createState() => _gestureClickState();
+}
+
+class _gestureClickState extends State<gestureClick> {
+  var wight = 100.0;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(//GestureDetector
+      //onTap:(){print("点击操作点了你的脸眼睛nam");},//点击
+      //  onDoubleTap:(){print("双手值点击");},// 双击
+      //  onLongPress:(){print("长按执行的操作最终");},
+       //onScaleStart:(v){print("开始缩小的时候得到结果");} ,
+       // onVerticalDragDown:(v){},
+       // onVerticalDragCancel:(){},
+       // onVerticalDragEnd:(v){},
+       // onVerticalDragUpdate:(v){},
+       // onHorizontalDragStart:(v){},//向上滑动向下滑动左移动
+        onVerticalDragStart:(v){
+        setState(() {
+          this.wight = this.wight+10.0;
+        });
+       },
+      child: Container(width:this.wight,height:100,color: Colors.red,child:Text("上滑体积变大"),),
+    );
+  }
+}
+class ListViewDemon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(//ListView.separed()
+    child: ListView.separated(itemBuilder:(context,index){return Container(height:100,color: Colors.black,);} , separatorBuilder:(context,index){return Container(height: 50,alignment:Alignment.center,child:Text(index.toString()),);}, itemCount: 10),
+    );
+  }
+}
+
 class WrapVertaical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

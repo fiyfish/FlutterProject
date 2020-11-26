@@ -6,15 +6,40 @@ class fiveData extends StatefulWidget {
   @override
   _fiveDataState createState() => _fiveDataState();
 }
+class dataShow extends StatefulWidget {
+  @override
+  _dataShowState createState() => _dataShowState();
+}
+
+class _dataShowState extends State<dataShow> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ExpansionTile(leading:CircleAvatar(backgroundImage:AssetImage(""),radius:20,),title: Text("课程"),children: [
+      Text("语文"),
+      Text("数学"),
+      Text("历史"),
+      Text("政治"),
+      ],
+      onExpansionChanged:(bool p){
+        print(p.toString());
+      },
+      ),
+    );
+  }
+}
 
 class _fiveDataState extends State<fiveData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("flutte入门"),),
-      body:Container(
-        child: Text("body"),
-        alignment: Alignment.center,
+      body:Column(
+        children: [
+          dataShow(),
+          Padding(padding:EdgeInsets.only(left:5)),
+          dataShow(),
+        ],
       ),
       drawer: Drawer(
        child: ListView(
