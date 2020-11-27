@@ -10,7 +10,6 @@ class _twoViewState extends State<twoView> {
     return pageSelectView();
   }
 }
-
 class pageSelectView extends StatefulWidget {
   @override
   _pageSelectViewState createState() => _pageSelectViewState();

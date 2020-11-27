@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_moduleexcise/TwoView.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_moduleexcise/LoginView.dart';
 class oneViewShow extends StatefulWidget {
   @override
   _oneViewShowState createState() => _oneViewShowState();
@@ -277,16 +278,19 @@ class PresentPageState extends State<PresentPage> {
 
   static const platform = const MethodChannel('samples.flutter.io/battery');
 
-
   String _batteryLevel = 'Unknown battery level.';
 
   String data = "";
+
 
   void dismiss() {
     // 直接调用原生方法
     var mapData = {"1":"2"};
     var list = ["one","two","three"];
     platform.invokeListMethod("present",list);//传递参数从flutter到ios
+  }
+  void fromViDeo(){
+    platform.invokeMethod("fromVC");
   }
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
@@ -304,13 +308,13 @@ class PresentPageState extends State<PresentPage> {
 
       data = dataShow;
     }
-
     setState(() {
       _batteryLevel = batteryLevel;
     });
   }
   @override
   Widget build(BuildContext context) {
+    platform.setMethodCallHandler(handler);
     return Material(
       child: Center(
         child: Column(
@@ -322,10 +326,37 @@ class PresentPageState extends State<PresentPage> {
             ),
             Text(_batteryLevel),
             RaisedButton(onPressed:(){dismiss();},child:Text("clickMe",style:TextStyle(color: Colors.red),),),
+            RaisedButton(onPressed:()async{
+              var result = await
+              Navigator.of(context).push(MaterialPageRoute(builder:(context){
+              return ImageIncon(title:"三体人的脱水技能");
+              }));
+              print(result);//返回值的获取代码
+              },child:Text("cliclMeShow"),),
           ],
         ),
       ),
     );
+  }
+
+  Future<dynamic> handler(MethodCall methodCall) {
+    String backNative = "failure";
+    if (methodCall.method == "flutterMedia") {
+      print("参数：" + methodCall.arguments.toString());
+      backNative = mediaCall(this.context);
+    }
+    print(backNative);
+    // 回传原生结果
+    return Future.value(backNative);
+  }
+  String mediaCall(BuildContext context) {
+    var media = MediaQuery.of(context);
+    print(media.toString());
+    print("设备像素密度:" + media.devicePixelRatio.toString());
+    print(media.orientation);
+    print("屏幕：" + media.size.toString());
+    print('状态栏高度：' + media.padding.top.toString());
+    return media.padding.toString();
   }
 }
 /*
