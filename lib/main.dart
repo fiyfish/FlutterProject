@@ -53,6 +53,7 @@ class _BottomNavigationBarDemonState extends State<BottomNavigationBarDemon> {
           BottomNavigationBarItem(icon:Icon(Icons.wallet_giftcard,color: Colors.black,),activeIcon:Icon(Icons.wallet_membership,color:Colors.blue),title:Text("微信")),
           BottomNavigationBarItem(icon:Icon(Icons.watch,color: Colors.black,),activeIcon:Icon(Icons.sanitizer,color:Colors.blue),title:Text("微信")),//BottomNavigationBarItem
           BottomNavigationBarItem(icon:Icon(Icons.waves,color: Colors.black,),activeIcon:Icon(Icons.satellite_rounded,color:Colors.blue),title:Text("微信")),
+          BottomNavigationBarItem(icon:Icon(Icons.waves,color: Colors.black,),activeIcon:Icon(Icons.satellite_rounded,color:Colors.blue),title:Text("我的")),
         ],
         iconSize: 24,
         currentIndex: _selePage,
