@@ -25,7 +25,53 @@ class Dog extends Animal{
 
 }
 
+class BottomNavigationBarDemon extends StatefulWidget {
+  @override
+  _BottomNavigationBarDemonState createState() => _BottomNavigationBarDemonState();
+}
+class _BottomNavigationBarDemonState extends State<BottomNavigationBarDemon> {
+  @override
+  int _selePage = 1;
+  List<StatefulWidget>_pageList;
+  void initState(){
+  super.initState();
+  _pageList = <StatefulWidget>[
+    new oneViewShow(),
+    new twoStack(),
+    new twoView(),
+    new threeView(),
+    new fiveData(),
+  ];
+  }
 
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pageList[_selePage],
+      bottomNavigationBar:BottomNavigationBar(
+        items:<BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon:Icon(Icons.height,color: Colors.black,),activeIcon:Icon(Icons.computer,color:Colors.blue),title:Text("微信")),//BottomNavigationBarItem
+          BottomNavigationBarItem(icon:Icon(Icons.wallet_giftcard,color: Colors.black,),activeIcon:Icon(Icons.wallet_membership,color:Colors.blue),title:Text("微信")),
+          BottomNavigationBarItem(icon:Icon(Icons.watch,color: Colors.black,),activeIcon:Icon(Icons.sanitizer,color:Colors.blue),title:Text("微信")),//BottomNavigationBarItem
+          BottomNavigationBarItem(icon:Icon(Icons.waves,color: Colors.black,),activeIcon:Icon(Icons.satellite_rounded,color:Colors.blue),title:Text("微信")),
+        ],
+        iconSize: 24,
+        currentIndex: _selePage,
+        onTap:(index){
+          if(index == 0){
+            print("0");
+          }else if(index == 1){
+            print("1");
+          }
+          setState(() {
+            _selePage = index;
+          });
+        },
+        fixedColor: Colors.green,
+        type: BottomNavigationBarType.fixed,
+      ),
+    );
+  }
+}
 
 
 class MyApp extends StatelessWidget {
@@ -46,7 +92,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: indexSelect(),
+      home: BottomNavigationBarDemon(),
 
     );
   }
