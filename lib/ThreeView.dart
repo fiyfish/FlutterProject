@@ -7,7 +7,7 @@ class twoView extends StatefulWidget {
 class _twoViewState extends State<twoView> {
   @override
   Widget build(BuildContext context) {
-    return pageSelectView();
+    return TabbarDemo();
   }
 }
 class pageSelectView extends StatefulWidget {
@@ -36,7 +36,7 @@ class TabbarDemo extends StatefulWidget {
   _TabbarDemoState createState() => _TabbarDemoState();
 }
 class _TabbarDemoState extends State<TabbarDemo> {
-  final List<String> _tabValues = ["语文","数嘘'","历史","河南","背景","eeeqewqeq","eqewqeqe","eqewqeq"];
+  final List<String> _tabValues = ["语文","数","历史","河南","背景","eeeqewqeq","eqewqeqe","eqewqeq"];
   TabController _controller;
   @override
   void initState(){
@@ -47,7 +47,7 @@ class _TabbarDemoState extends State<TabbarDemo> {
   Widget build(BuildContext context) {
     return Scaffold(
    appBar: AppBar(
-   title: Text("TabBar"),
+     title: Text("name"),
    bottom: TabBar(tabs:_tabValues.map((f){return Text(f);}).toList(),
    controller: _controller,
    indicatorColor:Colors.red,
@@ -56,18 +56,37 @@ class _TabbarDemoState extends State<TabbarDemo> {
      labelColor: Colors.red,
      unselectedLabelColor: Colors.black,
      indicatorWeight: 5.0,
-     labelStyle: TextStyle(height:3),
+     labelStyle: TextStyle(height:5),
 
    ),
    ),
     body:TabBarView(
     controller: _controller,
-      children: _tabValues.map((f){return Center(child: Text(f),);}).toList(),
+      children:[//在这里添加tabbarview的子视图一一添加
+        Circle(),
+        Text("tw0"),
+        Text("one"),
+        Text("tw0"),
+        Text("one"),
+        Text("tw0"),
+        Text("one"),
+        Text("tw0"),
+      ],
     ),
 
     );
   }
 }
+class Circle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+      child: Center(child:FlutterLogo(size:70,),),
+    );
+  }
+}
+//_tabValues.map((f){return Center(child: Text(f),);}).toList()
 class BottomNavigationBarDemon extends StatefulWidget {
   @override
   _BottomNavigationBarDemonState createState() => _BottomNavigationBarDemonState();
